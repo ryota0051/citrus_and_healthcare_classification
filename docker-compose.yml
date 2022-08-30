@@ -1,0 +1,13 @@
+version: "3"
+services:
+  classification:
+    restart: always
+    build: .
+    container_name: "classification"
+    tty: true
+    volumes:
+      - ./notebooks:/work/notebooks
+      - ./dataset:/work/dataset
+    command: jupyter-lab --allow-root --ip=0.0.0.0 --port=8888 --no-browser --NotebookApp.token='' --notebook-dir=/work
+    ports:
+      - "8888:8888"
